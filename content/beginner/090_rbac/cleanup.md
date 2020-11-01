@@ -14,7 +14,8 @@ kubectl delete namespace rbac-test
 rm rbacuser_creds.sh
 rm rbacuser-role.yaml
 rm rbacuser-role-binding.yaml
-aws iam delete-access-key --user-name=rbac-user --access-key-id=$(jq -r .AccessKey.AccessKeyId /tmp/create_output.json)
+aws iam delete-access-key --user-name=sergeiv-eksworkshop --access-key-id=$(aws iam list-access-ke
+ys --user-name sergeiv-eksworkshop | jq -r ".AccessKeyMetadata[0].AccessKeyId")
 aws iam delete-user --user-name rbac-user
 rm /tmp/create_output.json
 ```
